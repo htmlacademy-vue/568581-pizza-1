@@ -28,11 +28,16 @@
               <h2 class="title title--small sheet__title">Выберите тесто</h2>
               <div class="sheet__content dough">
                 <label
-                  v-for="dough in pizza.dough"
+                  v-for="(dough, index) in pizza.dough"
                   :key="dough.id"
-                  class="dough__input dough__input--light"
+                  class="dough__input"
+                  :class="pizzaDough[index]"
                 >
-                  <input type="radio" name="dought" value="light" />
+                  <input
+                    type="radio"
+                    :value="pizzaDoughVal[index]"
+                    name="dought"
+                  />
                   <b>{{ dough.name }}</b>
                   <span>{{ dough.description }}</span>
                 </label>
@@ -44,17 +49,16 @@
               <h2 class="title title--small sheet__title">Выберите размер</h2>
               <div class="sheet__content diameter">
                 <label
-                  v-for="size in pizza.sizes"
+                  v-for="(size, index) in pizza.sizes"
                   :key="size.id"
                   class="diameter__input"
-                  :class="size.multiplier"
+                  :class="pizzaImage[index]"
                 >
-                  <img :src="size.image" />
                   <input
-                    type="ratio"
+                    type="radio"
                     name="diameter"
                     class="visually-hidden"
-                    :value="size.multiplier"
+                    :value="pizzaVal[index]"
                   />
                   <span>{{ size.name }}</span>
                 </label>
@@ -169,51 +173,65 @@ export default {
   computed: {
     ingridientVal: function () {
       return this.pizza.ingredients.map(function (ingridient) {
+        if (!ingridient) return "";
         return (
           "filling--" + ingridient.image.split("/").slice(-1)[0].slice(0, -4)
         );
       });
     },
     pizzaImage: function () {
-      return this.pizza.ingredients.map(function (ingridient) {
-        return (
-          "filling--" + ingridient.image.split("/").slice(-1)[0].slice(0, -4)
-        );
+      return this.pizza.sizes.map(function (size) {
+        if (!size) return "";
+        switch (size.multiplier) {
+          case 1:
+            return "diameter__input--small";
+          case 2:
+            return "diameter__input--normal";
+          case 3:
+            return "diameter__input--big";
+          default:
+            return "diameter__input--normal";
+        }
+      });
+    },
+    pizzaVal: function () {
+      return this.pizza.sizes.map(function (size) {
+        if (!size) return "";
+        switch (size.multiplier) {
+          case 1:
+            return "small";
+          case 2:
+            return "normal";
+          case 3:
+            return "big";
+          default:
+            return "normal";
+        }
+      });
+    },
+    pizzaDough: function () {
+      return this.pizza.dough.map(function (dough) {
+        if (!dough.name) {
+          return "";
+        } else if (dough.name == "Тонкое") {
+          return "dough__input--light";
+        } else if (dough.name == "Толстое") {
+          return "dough__input--large";
+        }
+      });
+    },
+    pizzaDoughVal: function () {
+      return this.pizza.dough.map(function (dough) {
+        if (!dough.name) {
+          return "";
+        } else if (dough.name == "Тонкое") {
+          return "light";
+        } else if (dough.name == "Толстое") {
+          return "large";
+        }
       });
     },
   },
-  // filters: {
-  //   ingridientVal: function (value) {
-  //     if (!value) return "";
-  //     value = value.toString();
-  //     return "filling--" + value.split("/").slice(-1)[0].slice(0, -4);
-  //   },
-  //   pizzaClass: function (value) {
-  //     if (!value) return "";
-  //     switch (value) {
-  //       case 1:
-  //         return "diameter__input--small";
-  //       case 2:
-  //         return "diameter__input--normal";
-  //       case 3:
-  //         return "diameter__input--big";
-  //       default:
-  //         return "diameter__input--normal";
-  //     }
-  //   },
-  //   pizzaVal: function (value) {
-  //     if (!value) return "";
-  //     switch (value) {
-  //       case 1:
-  //         return "small";
-  //       case 2:
-  //         return "normal";
-  //       case 3:
-  //         return "big";
-  //       default:
-  //         return "normal";
-  //     }
-  //   },
-  // },
 };
 </script>
+<style scoped></style>
