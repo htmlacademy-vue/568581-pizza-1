@@ -24,7 +24,7 @@ services:
 
   frontend:
     build: src/frontend
-    command: npm run serve 
+    command: npm run serve
     environment:
       PORT: '8080'
       HOST: '0.0.0.0'

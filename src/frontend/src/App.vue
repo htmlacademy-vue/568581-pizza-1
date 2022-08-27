@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div id="App">
+    <Index></Index>
+  </div>
+  <!-- <div id="app">
     <div class="main">
       <div class="main__wrapper">
         <div class="main__header">
@@ -18,12 +21,16 @@
         </p>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
+import Index from "@/views/Index.vue";
 export default {
   name: "App",
+  components: {
+    Index,
+  },
 };
 </script>
 
