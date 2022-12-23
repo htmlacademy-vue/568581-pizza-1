@@ -1,0 +1,52 @@
+<template>
+  <div class="content__diameter">
+    <div class="sheet">
+      <h2 class="title title--small sheet__title">Выберите размер</h2>
+      <div class="sheet__content diameter">
+        <label
+          v-for="(size, index) in pizza.sizes"
+          :key="size.id"
+          class="diameter__input"
+          :class="pizzaImage[index]"
+        >
+          <input
+            type="radio"
+            name="diameter"
+            class="visually-hidden"
+            :value="pizzaVal[index]"
+          />
+          <span>{{ size.name }}</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+import pizza from "@/static/pizza.json";
+
+export default {
+  name: "BuilderSizeSelector",
+  data() {
+    return {
+      pizza,
+    };
+  },
+  computed: {
+    pizzaImage: function () {
+      return this.pizza.sizes.map(function (size) {
+        if (!size) return "";
+        switch (size.multiplier) {
+          case 1:
+            return "diameter__input--small";
+          case 2:
+            return "diameter__input--normal";
+          case 3:
+            return "diameter__input--big";
+          default:
+            return "diameter__input--normal";
+        }
+      });
+    },
+  },
+};
+</script>
