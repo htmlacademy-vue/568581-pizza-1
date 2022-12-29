@@ -46,48 +46,7 @@
           </div>
           <BuilderSizeSelectorVue />
 
-          <div class="content__ingredients">
-            <div class="sheet">
-              <h2 class="title title--small sheet__title">
-                Выберите ингредиенты
-              </h2>
-              <div class="sheet__content ingredients">
-                <div class="ingredients__sauce">
-                  <p>Основной соус:</p>
-
-                  <label
-                    v-for="sauce in pizza.sauces"
-                    :key="sauce.id"
-                    class="radio ingredients__input"
-                  >
-                    <input
-                      type="radio"
-                      name="sauce"
-                      :value="sauce.name"
-                      checked
-                    />
-                    <span>{{ sauce.name }}</span>
-                  </label>
-                </div>
-                <div class="ingredients__filling">
-                  <p>Начинка:</p>
-
-                  <ul class="ingredients__list">
-                    <li
-                      v-for="(ingredient, index) in pizza.ingredients"
-                      :key="ingredient.id"
-                      class="ingredients__item"
-                    >
-                      <span class="filling" :class="ingredientVal[index]">
-                        {{ ingredient.name }}</span
-                      >
-                      <RadioButtonVue />
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+          <BuilderIngredientsSelector />
           <div class="content__pizza">
             <label class="input">
               <span class="visually-hidden">Название пиццы</span>
@@ -99,7 +58,7 @@
             </label>
             <div class="content__result">
               <BuilderPizzaViewVue />
-              <p>Итого: 0 ₽</p>
+              <BuilderPriceCounter />
               <button type="button" class="button" disabled>Готовьте!</button>
             </div>
           </div>
@@ -112,15 +71,17 @@
 import misc from "@/static/misc.json";
 import pizza from "@/static/pizza.json";
 import user from "@/static/user.json";
-import RadioButtonVue from "@/common/components/RadioButton.vue";
 import BuilderPizzaViewVue from "@/modules/builder/components/BuilderPizzaView.vue";
 import BuilderSizeSelectorVue from "@/modules/builder/components/BuilderSizeSelector.vue";
+import BuilderPriceCounter from "@/modules/builder/components/BuilderPriceCounter.vue";
+import BuilderIngredientsSelector from "../modules/builder/components/BuilderIngredientsSelector.vue";
 export default {
   name: "Index",
   components: {
-    RadioButtonVue,
     BuilderPizzaViewVue,
     BuilderSizeSelectorVue,
+    BuilderPriceCounter,
+    BuilderIngredientsSelector,
   },
   data() {
     return {
@@ -138,36 +99,7 @@ export default {
         );
       });
     },
-    pizzaImage: function () {
-      return this.pizza.sizes.map(function (size) {
-        if (!size) return "";
-        switch (size.multiplier) {
-          case 1:
-            return "diameter__input--small";
-          case 2:
-            return "diameter__input--normal";
-          case 3:
-            return "diameter__input--big";
-          default:
-            return "diameter__input--normal";
-        }
-      });
-    },
-    pizzaVal: function () {
-      return this.pizza.sizes.map(function (size) {
-        if (!size) return "";
-        switch (size.multiplier) {
-          case 1:
-            return "small";
-          case 2:
-            return "normal";
-          case 3:
-            return "big";
-          default:
-            return "normal";
-        }
-      });
-    },
+
     pizzaDough: function () {
       return this.pizza.dough.map(function (dough) {
         if (!dough.name) {

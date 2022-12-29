@@ -32,6 +32,21 @@ export default {
     };
   },
   computed: {
+    pizzaVal: function () {
+      return this.pizza.sizes.map(function (size) {
+        if (!size) return "";
+        switch (size.multiplier) {
+          case 1:
+            return "small";
+          case 2:
+            return "normal";
+          case 3:
+            return "big";
+          default:
+            return "normal";
+        }
+      });
+    },
     pizzaImage: function () {
       return this.pizza.sizes.map(function (size) {
         if (!size) return "";
