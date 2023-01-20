@@ -9,7 +9,12 @@
           class="dough__input"
           :class="pizzaDough[index]"
         >
-          <input type="radio" :value="pizzaDoughVal[index]" name="dought" />
+          <input
+            type="radio"
+            :value="pizzaDoughVal[index]"
+            name="dought"
+            class="visually-hidden"
+          />
           <b>{{ dough.name }}</b>
           <span>{{ dough.description }}</span>
         </label>
