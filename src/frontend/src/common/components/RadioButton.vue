@@ -4,7 +4,7 @@
       type="button"
       :disabled="isDecrementDisabled"
       class="counter__button counter__button--minus"
-      v-on:click="decrement()"
+      @click="decrement()"
     >
       <span class="visually-hidden">Меньше</span>
     </button>
@@ -17,7 +17,7 @@
     />
     <button
       type="button"
-      v-on:click="increment()"
+      @click="increment()"
       class="counter__button counter__button--plus"
     >
       <span class="visually-hidden">Больше</span>
@@ -29,8 +29,13 @@ export default {
   name: "RadioButton",
   data() {
     return {
-      number: 0,
+      number: this.count,
     };
+  },
+  props: {
+    count: {
+      type: Number,
+    },
   },
   computed: {
     isDecrementDisabled() {
@@ -41,9 +46,11 @@ export default {
   methods: {
     increment() {
       this.number++;
+      this.$emit("update:value", this.number);
     },
     decrement() {
       this.number--;
+      this.$emit("update:value", this.number);
     },
   },
 };

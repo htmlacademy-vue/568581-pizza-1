@@ -23,13 +23,21 @@
   </div>
 </template>
 <script>
-import pizza from "@/static/pizza.json";
+//import pizza from "@/static/pizza.json";
 export default {
   name: "BuilderDoughSelector",
-  data() {
-    return {
-      pizza,
-    };
+  // data() {
+  //   return {
+  //     pizza,
+  //   };
+  // },
+  props: {
+    pizza: {
+      type: Object,
+    },
+    dough: {
+      type: Object,
+    },
   },
   computed: {
     pizzaDough: function () {

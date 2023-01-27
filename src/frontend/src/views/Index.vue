@@ -5,7 +5,7 @@
       <form action="#" method="post">
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
-          <BuilderDoughSelector />
+          <BuilderDoughSelector :dough="dough" :pizza="pizza" />
           <BuilderSizeSelectorVue />
           <BuilderIngredientsSelector />
           <div class="content__pizza">
@@ -50,6 +50,10 @@ export default {
       misc,
       pizza,
       user,
+      ingredients: {},
+      dough: {},
+      size: {},
+      price: {},
     };
   },
   computed: {},

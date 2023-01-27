@@ -42,6 +42,12 @@ export default {
       pizza,
     };
   },
+  props: {
+    ingredientsPrice: {
+      type: Number,
+      default: 0,
+    },
+  },
   computed: {
     ingredientVal: function () {
       return this.pizza.ingredients.map(function (ingredient) {
