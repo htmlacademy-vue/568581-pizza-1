@@ -1,11 +1,21 @@
 <template>
-  <AppDrop @drop="$emit('drop', $event)">
-    <AppDrag :transfer-data="ingredient">
+  <AppDrop>
+    <AppDrag
+      :transfer-data="{
+        id: this.ingredient.id,
+        count: this.count,
+        countPrice: this.countPrice,
+        ingredient: this.ingredient,
+      }"
+    >
       <li>
         <span class="filling" :class="ingredientVal">
-          {{ ingredient.name }}</span
+          {{ this.ingredient.name }}</span
         >
-        <RadioButton :count="count" @update:value="changeCount" />
+        <RadioButton
+          :count="this.ingredient.count"
+          @update:value="changeCount"
+        />
       </li>
     </AppDrag>
   </AppDrop>
@@ -24,7 +34,7 @@ export default {
   },
   data() {
     return {
-      count: 0,
+      Ingredient: this.ingredient,
     };
   },
   props: {
@@ -32,14 +42,13 @@ export default {
       type: Object,
       required: true,
     },
-    price: {
-      type: Number,
-      default: 1,
-    },
-    countPrice: {
-      type: Number,
-      default: 0,
-    },
+    // price: {
+    //   type: Number,
+    //   default: 1,
+    // },
+    // ingredients: {
+    //   type: Array,
+    // },
     //   count: {
     //     type: Number,
     //     default: 0,
@@ -55,12 +64,20 @@ export default {
   },
   methods: {
     test() {
-      console.log(11111);
+      console.log(1);
     },
+
     changeCount(newValue) {
-      this.count = newValue;
-      //this.countPrice = this.count * this.price;
-      console.log(this.count);
+      this.Ingredient.count = newValue;
+      this.Ingredient.countPrice = this.count * this.ingredient.price;
+      // let obj = {
+      //   id: this.ingredient.id,
+      //   count: this.count,
+      //   countPrice: this.countPrice,
+      //   ingredient: this.ingredient,
+      // };
+      //  obj.count > 0
+      this.$emit("updateIngredients", this.Ingredient);
     },
   },
 };

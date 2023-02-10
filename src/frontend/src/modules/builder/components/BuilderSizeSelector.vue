@@ -13,7 +13,8 @@
             type="radio"
             name="diameter"
             class="visually-hidden"
-            :value="pizzaVal[index]"
+            :value="size.name"
+            v-model="Size"
           />
           <span>{{ size.name }}</span>
         </label>
@@ -29,7 +30,13 @@ export default {
   data() {
     return {
       pizza,
+      Size: this.size,
     };
+  },
+  props: {
+    size: {
+      type: String,
+    },
   },
   computed: {
     pizzaVal: function () {
@@ -61,6 +68,11 @@ export default {
             return "diameter__input--normal";
         }
       });
+    },
+  },
+  watch: {
+    Size(newValue) {
+      this.$emit("update:size", newValue);
     },
   },
 };

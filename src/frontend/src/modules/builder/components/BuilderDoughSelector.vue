@@ -11,9 +11,10 @@
         >
           <input
             type="radio"
-            :value="pizzaDoughVal[index]"
-            name="dought"
+            :value="dough.name"
+            name="dough"
             class="visually-hidden"
+            v-model="Dough"
           />
           <b>{{ dough.name }}</b>
           <span>{{ dough.description }}</span>
@@ -26,17 +27,20 @@
 //import pizza from "@/static/pizza.json";
 export default {
   name: "BuilderDoughSelector",
-  // data() {
-  //   return {
-  //     pizza,
-  //   };
-  // },
+  data() {
+    return {
+      Dough: this.dough,
+    };
+  },
   props: {
     pizza: {
       type: Object,
     },
     dough: {
-      type: Object,
+      type: String,
+    },
+    price: {
+      type: Number,
     },
   },
   computed: {
@@ -61,6 +65,11 @@ export default {
           return "large";
         }
       });
+    },
+  },
+  watch: {
+    Dough(newValue) {
+      this.$emit("update:dough", newValue);
     },
   },
 };
