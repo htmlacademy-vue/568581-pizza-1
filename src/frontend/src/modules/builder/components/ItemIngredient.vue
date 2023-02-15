@@ -2,19 +2,16 @@
   <AppDrop>
     <AppDrag
       :transfer-data="{
-        id: this.ingredient.id,
-        count: this.count,
-        countPrice: this.countPrice,
-        ingredient: this.ingredient,
+        ingredient: this.Ingredient,
       }"
     >
       <li>
         <span class="filling" :class="ingredientVal">
-          {{ this.ingredient.name }}</span
+          {{ this.Ingredient.name }}</span
         >
         <RadioButton
           :count="this.ingredient.count"
-          @update:value="changeCount"
+          @update:name="changeCount"
         />
       </li>
     </AppDrag>
@@ -35,6 +32,11 @@ export default {
   data() {
     return {
       Ingredient: this.ingredient,
+      // count: this.ingredient.count,
+      // id: this.ingredient.id,
+      // name: this.ingredient.name,
+      // price: this.ingredient.price,
+      // countPrice: this.ingredient.countPrice,
     };
   },
   props: {
@@ -58,7 +60,7 @@ export default {
     ingredientVal: function () {
       if (!this.ingredient) return "";
       return (
-        "filling--" + this.ingredient.image.split("/").slice(-1)[0].slice(0, -4)
+        "filling--" + this.Ingredient.image.split("/").slice(-1)[0].slice(0, -4)
       );
     },
   },
@@ -69,7 +71,8 @@ export default {
 
     changeCount(newValue) {
       this.Ingredient.count = newValue;
-      this.Ingredient.countPrice = this.count * this.ingredient.price;
+      this.Ingredient.totalPrice =
+        this.Ingredient.count * this.Ingredient.price;
       // let obj = {
       //   id: this.ingredient.id,
       //   count: this.count,

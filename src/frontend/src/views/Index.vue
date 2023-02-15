@@ -5,16 +5,12 @@
       <form action="#" method="post">
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
-          <BuilderDoughSelector
-            @update:dough="setDough"
-            :dough="dough"
-            :pizza="pizza"
-          />
+          <BuilderDoughSelector @update:doughs="setDough" :doughs="doughs" />
           <BuilderSizeSelectorVue :size="size" @update:size="setSize" />
           <BuilderIngredientsSelector
             :pizzaSauces="pizza.sauces"
             :ingredients="ingredients"
-            :sauce="sauce"
+            :sauces="sauces"
             @update:price="setPrice"
             @setIngredients="setIngredients"
             @update:sauce="setSauce"
@@ -43,6 +39,7 @@ import BuilderSizeSelectorVue from "@/modules/builder/components/BuilderSizeSele
 import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelector.vue";
 import BuilderIngredientsSelector from "@/modules/builder/components/BuilderIngredientsSelector.vue";
 import { getIngredient } from "@/common/helpers";
+import { getDough, getSauce } from "../common/helpers";
 export default {
   name: "Index",
   components: {
@@ -60,9 +57,10 @@ export default {
       ingredients: pizza.ingredients.map((ingredient) =>
         getIngredient(ingredient)
       ),
-      dough: "Тонкое",
+      doughs: pizza.dough.map((dough) => getDough(dough)),
       size: "23 см",
-      sauce: "Томатный",
+      sauce: "Сливочный",
+      sauces: pizza.sauces.map((sauce) => getSauce(sauce)),
       ingredientsPrice: 0,
       price: 0,
       name: "",
@@ -70,9 +68,9 @@ export default {
   },
   computed: {},
   methods: {
-    setDough(dough) {
-      console.log(dough);
-      this.dough = dough;
+    setDough(doughs) {
+      console.log(doughs);
+      this.doughs = doughs;
     },
     setSauce(sauce) {
       console.log(sauce);

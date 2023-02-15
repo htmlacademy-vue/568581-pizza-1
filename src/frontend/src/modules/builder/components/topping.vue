@@ -20,12 +20,12 @@ export default {
     },
   },
   computed: {
-    // className() {
-    //   return (
-    //     "pizza__filling pizza__filling--" +
-    //     this.image.split("/").slice(-1)[0].slice(0, -4)
-    //   );
-    // },
+    className() {
+      return (
+        "pizza__filling pizza__filling--" +
+        (this.image ? this.image.split("/").slice(-1)[0].slice(0, -4) : "")
+      );
+    },
   },
 };
 </script>

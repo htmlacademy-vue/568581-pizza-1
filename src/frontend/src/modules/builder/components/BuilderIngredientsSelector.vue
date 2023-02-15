@@ -6,17 +6,17 @@
         <div class="ingredients__sauce">
           <p>Основной соус:</p>
           <label
-            v-for="sauces in pizzaSauces"
-            :key="sauces.id"
+            v-for="sauce in Sauces"
+            :key="sauce.id"
             class="radio ingredients__input"
           >
             <input
               type="radio"
               name="sauce"
-              :value="sauces.name"
-              v-model="Sauce"
+              :value="sauce.name"
+              @input="setSauce"
             />
-            <span>{{ sauces.name }}</span>
+            <span>{{ sauce.name }}</span>
           </label>
         </div>
         <div class="ingredients__filling">
@@ -44,14 +44,16 @@ export default {
     ItemIngredient,
   },
   data() {
+    //todo попробуй вытащить дефаултный соус найдя тот который выбран циклом
     return {
       pizza,
       Sauce: this.sauce,
       Ingredients: this.ingredients,
+      Sauces: this.sauces,
     };
   },
   props: {
-    pizzaSauces: {
+    sauces: {
       type: Array,
     },
     ingredientsPrice: {
@@ -74,9 +76,9 @@ export default {
         );
       });
     },
-    // countPrice() {
-    //   return this.Ingredients.reduce((sum, item) => sum + item.countPrice, 0);
-    // },
+    countPrice() {
+      return this.Ingredients.reduce((sum, item) => sum + item.totalPrice, 0);
+    },
   },
   methods: {
     updateIngredients(ingredient) {
@@ -105,7 +107,9 @@ export default {
       //   }
       // }
     },
-
+    setSauce(event) {
+      console.log(event);
+    },
     // countPrice(ingredientPrice){
     //   this.price
     // },

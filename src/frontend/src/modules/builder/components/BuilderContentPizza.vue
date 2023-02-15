@@ -51,19 +51,15 @@ export default {
   },
   methods: {
     updateIngredients(ingredient) {
-      this.addIngredient(ingredient);
+      this.changeIngredient(ingredient);
       this.$emit("setIngredients", this.Ingredients);
     },
-    addIngredient(addObject) {
-      if (!this.Ingredients.some((item) => item.id === addObject.id)) {
-        this.Ingredients.push(addObject);
-      } else {
-        let obj = this.Ingredients.find((item) => item.id === addObject.id);
-        if (obj) {
-          obj.count = addObject.count;
-          obj.countPrice = addObject.countPrice;
-        }
-      }
+    changeIngredient(changeObject) {
+      let elem = this.Ingredients.find(
+        (ingredient) => ingredient.id === changeObject.id
+      );
+      elem.count = changeObject.count;
+      elem.totalPrice = changeObject.totalPrice;
     },
   },
   watch: {

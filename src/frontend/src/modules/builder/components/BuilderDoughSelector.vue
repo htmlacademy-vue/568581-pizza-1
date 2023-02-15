@@ -3,8 +3,14 @@
     <div class="sheet">
       <h2 class="title title--small sheet__title">Выберите тесто</h2>
       <div class="sheet__content dough">
-        <label
-          v-for="(dough, index) in pizza.dough"
+        <Dough
+          v-for="dough in this.Doughs"
+          :key="dough.id"
+          :dough="dough"
+          @setSelected="setSelected"
+        />
+        <!-- <label
+          v-for="(dough, index) in this.doughs"
           :key="dough.id"
           class="dough__input"
           :class="pizzaDough[index]"
@@ -18,59 +24,39 @@
           />
           <b>{{ dough.name }}</b>
           <span>{{ dough.description }}</span>
-        </label>
+        </label> -->
       </div>
     </div>
   </div>
 </template>
 <script>
-//import pizza from "@/static/pizza.json";
+import Dough from "@/modules/builder/components/BuilderDough.vue";
 export default {
   name: "BuilderDoughSelector",
   data() {
-    return {
-      Dough: this.dough,
-    };
+    return { Doughs: this.doughs };
+  },
+  components: {
+    Dough,
   },
   props: {
-    pizza: {
-      type: Object,
-    },
-    dough: {
-      type: String,
-    },
-    price: {
-      type: Number,
+    doughs: {
+      type: Array,
     },
   },
-  computed: {
-    pizzaDough: function () {
-      return this.pizza.dough.map(function (dough) {
-        if (!dough.name) {
-          return "";
-        } else if (dough.name == "Тонкое") {
-          return "dough__input--light";
-        } else if (dough.name == "Толстое") {
-          return "dough__input--large";
-        }
+  methods: {
+    setSelected(selectedDough) {
+      this.Doughs.forEach((dough) => {
+        dough.selected = false;
+        if (dough.id === selectedDough.id) dough.selected = true;
       });
-    },
-    pizzaDoughVal: function () {
-      return this.pizza.dough.map(function (dough) {
-        if (!dough.name) {
-          return "";
-        } else if (dough.name == "Тонкое") {
-          return "light";
-        } else if (dough.name == "Толстое") {
-          return "large";
-        }
-      });
+      this.$emit("update:doughs", this.Doughs);
     },
   },
-  watch: {
-    Dough(newValue) {
-      this.$emit("update:dough", newValue);
-    },
-  },
+  // watch: {
+  //   Doughs(newValue) {
+  //     this.$emit("update:doughs", newValue);
+  //   },
+  // },
 };
 </script>

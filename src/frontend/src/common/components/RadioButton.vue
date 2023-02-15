@@ -8,13 +8,7 @@
     >
       <span class="visually-hidden">Меньше</span>
     </button>
-    <input
-      v-model="number"
-      type="text"
-      name="counter"
-      class="counter__input"
-      value="0"
-    />
+    <input v-model="number" type="text" name="counter" class="counter__input" />
     <button
       type="button"
       @click="increment()"
@@ -46,11 +40,16 @@ export default {
   methods: {
     increment() {
       this.number++;
-      this.$emit("update:value", this.number);
+      // this.$emit("update:value", this.number);
     },
     decrement() {
       this.number--;
-      this.$emit("update:value", this.number);
+      //this.$emit("update:value", this.number);
+    },
+  },
+  watch: {
+    number(newValue) {
+      this.$emit("update:name", Number(newValue));
     },
   },
 };

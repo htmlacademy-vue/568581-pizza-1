@@ -3,14 +3,14 @@
     <div class="content__constructor">
       <div class="pizza" :class="this.pizzaClass">
         <div class="pizza__wrapper">
-          <!-- <Topping
-            v-for="topping in ingredients"
+          <Topping
+            v-for="topping in toppings"
             :key="topping.id"
-            :id="topping.ingredient.id"
-            :name="topping.ingredient.name"
-            :image="topping.ingredient.image"
-            :price="topping.ingredient.price"
-          /> -->
+            :id="topping.id"
+            :name="topping.name"
+            :image="topping.image"
+            :price="topping.price"
+          />
           <Topping />
         </div>
       </div>
@@ -27,9 +27,7 @@ export default {
     Topping,
   },
   data() {
-    return {
-      toppings: [],
-    };
+    return {};
   },
   props: {
     sauce: {
@@ -43,6 +41,9 @@ export default {
     },
   },
   computed: {
+    toppings() {
+      return this.ingredients.filter((ingredient) => ingredient.count > 0);
+    },
     pizzaSauce() {
       switch (this.sauce) {
         case "Сливочный":
@@ -71,7 +72,11 @@ export default {
   },
   methods: {
     addTopping(data) {
-      this.$emit("updateIngredients", data);
+      let ingredient = data.ingredient;
+      ingredient.count++;
+      ingredient.totalPrice = ingredient.count * ingredient.price;
+      console.log(ingredient);
+      this.$emit("updateIngredients", ingredient);
       // console.log(data);
       // let top = {
       //   id: data.id,
