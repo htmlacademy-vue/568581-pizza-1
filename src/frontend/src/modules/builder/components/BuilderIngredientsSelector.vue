@@ -82,8 +82,7 @@ export default {
   },
   methods: {
     updateIngredients(ingredient) {
-      this.changeIngredient(ingredient);
-      this.$emit("setIngredients", this.Ingredients);
+      this.$emit("setIngredients", ingredient);
     },
     // removeIngredients(ingredient) {
     //   this.Ingredients = this.Ingredients.filter((item) => {
@@ -91,22 +90,22 @@ export default {
     //   });
     //   this.$emit("setIngredients", this.Ingredients);
     // },
-    changeIngredient(changeObject) {
-      let elem = this.Ingredients.find(
-        (ingredient) => ingredient.id === changeObject.id
-      );
-      elem.count = changeObject.count;
-      elem.totalPrice = changeObject.totalPrice;
-      // if (!this.Ingredients.some((item) => item.id === addObject.id)) {
-      //   this.Ingredients.push(addObject);
-      // } else {
-      //   let obj = this.Ingredients.find((item) => item.id === addObject.id);
-      //   if (obj) {
-      //     obj.count = addObject.count;
-      //     obj.countPrice = addObject.countPrice;
-      //   }
-      // }
-    },
+    // changeIngredient(changeObject) {
+    //   let elem = this.Ingredients.find(
+    //     (ingredient) => ingredient.id === changeObject.id
+    //   );
+    //   elem.count = changeObject.count;
+    //   elem.totalPrice = changeObject.totalPrice;
+    //   // if (!this.Ingredients.some((item) => item.id === addObject.id)) {
+    //   //   this.Ingredients.push(addObject);
+    //   // } else {
+    //   //   let obj = this.Ingredients.find((item) => item.id === addObject.id);
+    //   //   if (obj) {
+    //   //     obj.count = addObject.count;
+    //   //     obj.countPrice = addObject.countPrice;
+    //   //   }
+    //   // }
+    // },
     setSauce(event) {
       console.log(event);
     },

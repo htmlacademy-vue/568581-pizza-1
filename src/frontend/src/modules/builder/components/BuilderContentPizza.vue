@@ -13,24 +13,20 @@
       :size="size"
       :ingredients="ingredients"
       :sauce="sauce"
-      @updateIngredients="updateIngredients"
+      @updateIngredients="changeIngredient"
     ></BuilderPizzaView>
     <BuilderPriceCounter :price="price"></BuilderPriceCounter>
   </div>
 </template>
+
 <script>
 import BuilderPizzaView from "@/modules/builder/components/BuilderPizzaView.vue";
 import BuilderPriceCounter from "@/modules/builder/components/BuilderPriceCounter.vue";
+
 export default {
   components: {
     BuilderPizzaView,
     BuilderPriceCounter,
-  },
-  data() {
-    return {
-      Name: this.name,
-      Ingredients: this.ingredients,
-    };
   },
   props: {
     sauce: {
@@ -49,13 +45,14 @@ export default {
       type: Array,
     },
   },
+  data() {
+    return {
+      Name: this.name,
+    };
+  },
   methods: {
-    updateIngredients(ingredient) {
-      this.changeIngredient(ingredient);
-      this.$emit("setIngredients", this.Ingredients);
-    },
     changeIngredient(changeObject) {
-      let elem = this.Ingredients.find(
+      let elem = this.ingredients.find(
         (ingredient) => ingredient.id === changeObject.id
       );
       elem.count = changeObject.count;

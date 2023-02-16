@@ -21,11 +21,11 @@
 <script>
 export default {
   name: "RadioButton",
-  data() {
-    return {
-      number: this.count,
-    };
-  },
+  // data() {
+  //   // return {
+  //   //   number: this.count,
+  //   // };
+  // },
   props: {
     count: {
       type: Number,

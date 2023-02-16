@@ -39,7 +39,7 @@ import BuilderSizeSelectorVue from "@/modules/builder/components/BuilderSizeSele
 import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelector.vue";
 import BuilderIngredientsSelector from "@/modules/builder/components/BuilderIngredientsSelector.vue";
 import { getIngredient } from "@/common/helpers";
-import { getDough, getSauce } from "../common/helpers";
+import { getDough } from "../common/helpers";
 export default {
   name: "Index",
   components: {
@@ -59,8 +59,8 @@ export default {
       ),
       doughs: pizza.dough.map((dough) => getDough(dough)),
       size: "23 см",
-      sauce: "Сливочный",
-      sauces: pizza.sauces.map((sauce) => getSauce(sauce)),
+      sauce: pizza.sauces[0],
+      sauces: pizza.sauces,
       ingredientsPrice: 0,
       price: 0,
       name: "",
@@ -84,12 +84,19 @@ export default {
       console.log(name);
       this.name = name;
     },
-    setIngredients(ingredients) {
-      this.ingredients = ingredients;
+    setIngredients(ingredient) {
+      this.changeIngredient(ingredient);
       console.log(this.ingredients);
     },
     setPrice(price) {
       this.price = price;
+    },
+    changeIngredient(changeObject) {
+      let elem = this.ingredients.find(
+        (ingredient) => ingredient.id === changeObject.id
+      );
+      elem.count = changeObject.count;
+      elem.totalPrice = changeObject.totalPrice;
     },
   },
   watch: {},
