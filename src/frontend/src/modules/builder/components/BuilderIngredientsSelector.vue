@@ -14,7 +14,7 @@
               type="radio"
               name="sauce"
               :value="sauce.name"
-              v-model="Sauce"
+              v-model="Sauce.name"
               @input="setSauce"
             />
             <span>{{ sauce.name }}</span>
@@ -61,7 +61,7 @@ export default {
       default: 0,
     },
     sauce: {
-      type: String,
+      type: Object,
     },
     ingredients: {
       type: Array,

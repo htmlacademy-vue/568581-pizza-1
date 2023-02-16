@@ -11,6 +11,7 @@
             :pizzaSauces="pizza.sauces"
             :ingredients="ingredients"
             :sauces="sauces"
+            :sauce="sauce"
             @update:price="setPrice"
             @setIngredients="setIngredients"
             @update:sauce="setSauce"
