@@ -10,7 +10,7 @@
           {{ this.Ingredient.name }}</span
         >
         <RadioButton
-          :count="this.ingredient.count"
+          :count="this.Ingredient.count"
           @update:name="changeCount"
         />
       </li>
@@ -65,10 +65,6 @@ export default {
     },
   },
   methods: {
-    test() {
-      console.log(1);
-    },
-
     changeCount(newValue) {
       this.Ingredient.count = newValue;
       this.Ingredient.totalPrice =

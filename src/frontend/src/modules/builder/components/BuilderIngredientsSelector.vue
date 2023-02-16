@@ -14,6 +14,7 @@
               type="radio"
               name="sauce"
               :value="sauce.name"
+              v-model="Sauce"
               @input="setSauce"
             />
             <span>{{ sauce.name }}</span>
@@ -44,7 +45,6 @@ export default {
     ItemIngredient,
   },
   data() {
-    //todo попробуй вытащить дефаултный соус найдя тот который выбран циклом
     return {
       pizza,
       Sauce: this.sauce,
