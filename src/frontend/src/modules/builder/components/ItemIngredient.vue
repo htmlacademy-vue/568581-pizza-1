@@ -11,7 +11,7 @@
         >
         <RadioButton
           :count="this.Ingredient.count"
-          @update:name="changeCount"
+          @update:count="changeCount"
         />
       </li>
     </AppDrag>

@@ -2,22 +2,17 @@
   <div class="counter counter--orange ingredients__counter">
     <button
       type="button"
-      :disabled="isDecrementDisabled"
+      :disabled="count === 0"
       class="counter__button counter__button--minus"
-      @click="decrement()"
+      @click="decrement"
     >
       <span class="visually-hidden">Меньше</span>
     </button>
-    <input
-      v-model="this.count"
-      type="text"
-      name="counter"
-      class="counter__input"
-    />
+    <input v-model="count" type="text" name="counter" class="counter__input" />
     <button
       type="button"
-      @click="increment()"
       class="counter__button counter__button--plus"
+      @click="increment"
     >
       <span class="visually-hidden">Больше</span>
     </button>
@@ -34,28 +29,27 @@ export default {
   props: {
     count: {
       type: Number,
+      default: 0,
     },
   },
-  computed: {
-    isDecrementDisabled() {
-      return this.number === 0;
-    },
-  },
+  // computed: {
+  //   isDecrementDisabled() {
+  //     return this.number === 0;
+  //   },
+  // },
 
   methods: {
     increment() {
-      this.number++;
-      //this.$emit("update:value", this.count++);
+      this.$emit("update:count", this.count + 1);
     },
     decrement() {
-      this.number--;
-      //this.$emit("update:value", this.count--);
+      this.$emit("update:count", this.count - 1);
     },
   },
-  watch: {
-    number(newValue) {
-      this.$emit("update:name", Number(newValue));
-    },
-  },
+  // watch: {
+  //   count(newValue) {
+  //     this.$emit("update:name", Number(newValue));
+  //   },
+  // },
 };
 </script>
