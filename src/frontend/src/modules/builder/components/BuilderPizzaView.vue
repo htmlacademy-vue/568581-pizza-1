@@ -31,7 +31,7 @@ export default {
   },
   props: {
     sauce: {
-      type: String,
+      type: Object,
     },
     size: {
       type: String,
@@ -45,7 +45,7 @@ export default {
       return this.ingredients.filter((ingredient) => ingredient.count > 0);
     },
     pizzaSauce() {
-      switch (this.sauce) {
+      switch (this.sauce.name) {
         case "Сливочный":
           return "creamy";
         case "Томатный":

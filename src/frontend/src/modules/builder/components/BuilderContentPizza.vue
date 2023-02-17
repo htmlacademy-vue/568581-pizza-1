@@ -30,7 +30,7 @@ export default {
   },
   props: {
     sauce: {
-      type: String,
+      type: Object,
     },
     size: {
       type: String,

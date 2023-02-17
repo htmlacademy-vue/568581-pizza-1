@@ -5,7 +5,11 @@
       <form action="#" method="post">
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
-          <BuilderDoughSelector @update:doughs="setDough" :doughs="doughs" />
+          <BuilderDoughSelector
+            @update:doughs="setDough"
+            :dough="dough"
+            :doughs="doughs"
+          />
           <BuilderSizeSelectorVue :size="size" @update:size="setSize" />
           <BuilderIngredientsSelector
             :pizzaSauces="pizza.sauces"
@@ -40,7 +44,6 @@ import BuilderSizeSelectorVue from "@/modules/builder/components/BuilderSizeSele
 import BuilderDoughSelector from "@/modules/builder/components/BuilderDoughSelector.vue";
 import BuilderIngredientsSelector from "@/modules/builder/components/BuilderIngredientsSelector.vue";
 import { getIngredient } from "@/common/helpers";
-import { getDough } from "../common/helpers";
 export default {
   name: "Index",
   components: {
@@ -58,7 +61,8 @@ export default {
       ingredients: pizza.ingredients.map((ingredient) =>
         getIngredient(ingredient)
       ),
-      doughs: pizza.dough.map((dough) => getDough(dough)),
+      dough: pizza.dough[0],
+      doughs: pizza.dough,
       size: "23 см",
       sauce: pizza.sauces[0],
       sauces: pizza.sauces,

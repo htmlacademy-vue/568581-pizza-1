@@ -3,45 +3,45 @@
     <div class="sheet">
       <h2 class="title title--small sheet__title">Выберите тесто</h2>
       <div class="sheet__content dough">
-        <Dough
+        <!-- <Dough
           v-for="dough in this.Doughs"
           :key="dough.id"
           :dough="dough"
           @setSelected="setSelected"
-        />
-        <!-- <label
-          v-for="(dough, index) in this.doughs"
-          :key="dough.id"
+        /> -->
+        <label
+          v-for="(Dough, index) in this.Doughs"
+          :key="Dough.id"
           class="dough__input"
           :class="pizzaDough[index]"
         >
           <input
             type="radio"
-            :value="dough.name"
+            :value="Dough.name"
             name="dough"
             class="visually-hidden"
-            v-model="Dough"
           />
-          <b>{{ dough.name }}</b>
-          <span>{{ dough.description }}</span>
-        </label> -->
+          <b>{{ Dough.name }}</b>
+          <span>{{ Dough.description }}</span>
+        </label>
       </div>
     </div>
   </div>
 </template>
 <script>
-import Dough from "@/modules/builder/components/BuilderDough.vue";
+//import Dough from "@/modules/builder/components/BuilderDough.vue";
 export default {
   name: "BuilderDoughSelector",
   data() {
     return { Doughs: this.doughs };
   },
-  components: {
-    Dough,
-  },
+  components: {},
   props: {
     doughs: {
       type: Array,
+    },
+    dough: {
+      type: Object,
     },
   },
   methods: {
