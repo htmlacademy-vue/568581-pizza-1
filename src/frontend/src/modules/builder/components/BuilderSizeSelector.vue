@@ -4,7 +4,7 @@
       <h2 class="title title--small sheet__title">Выберите размер</h2>
       <div class="sheet__content diameter">
         <label
-          v-for="(size, index) in pizza.sizes"
+          v-for="(size, index) in sizes"
           :key="size.id"
           class="diameter__input"
           :class="pizzaImage[index]"
@@ -14,7 +14,7 @@
             name="diameter"
             class="visually-hidden"
             :value="size.name"
-            v-model="Size"
+            v-model="Size.name"
           />
           <span>{{ size.name }}</span>
         </label>
@@ -23,20 +23,21 @@
   </div>
 </template>
 <script>
-import pizza from "@/static/pizza.json";
 
 export default {
   name: "BuilderSizeSelector",
   data() {
     return {
-      pizza,
       Size: this.size,
     };
   },
   props: {
     size: {
-      type: String,
+      type: Object,
     },
+    sizes: {
+      type: Array,
+    }
   },
   computed: {
     pizzaVal: function () {

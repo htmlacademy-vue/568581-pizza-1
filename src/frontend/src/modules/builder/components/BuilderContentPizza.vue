@@ -33,7 +33,7 @@ export default {
       type: Object,
     },
     size: {
-      type: String,
+      type: Object,
     },
     price: {
       type: Number,

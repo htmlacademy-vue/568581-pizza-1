@@ -10,9 +10,8 @@
             :dough="dough"
             :doughs="doughs"
           />
-          <BuilderSizeSelectorVue :size="size" @update:size="setSize" />
+          <BuilderSizeSelectorVue :size="size" :sizes="sizes" @update:size="setSize" />
           <BuilderIngredientsSelector
-            :pizzaSauces="pizza.sauces"
             :ingredients="ingredients"
             :sauces="sauces"
             :sauce="sauce"
@@ -63,9 +62,10 @@ export default {
       ),
       dough: pizza.dough[0],
       doughs: pizza.dough,
-      size: "23 см",
       sauce: pizza.sauces[0],
       sauces: pizza.sauces,
+      sizes: pizza.sizes,
+      size: pizza.sizes[0],
       ingredientsPrice: 0,
       price: 0,
       name: "",
