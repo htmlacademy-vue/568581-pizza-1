@@ -34,7 +34,7 @@ export default {
       type: Object,
     },
     size: {
-      type: String,
+      type: Object,
     },
     ingredients: {
       type: Array,
@@ -55,7 +55,7 @@ export default {
       }
     },
     pizzaSize() {
-      switch (this.size) {
+      switch (this.size.name) {
         case "23 см":
           return "small";
         case "32 см":

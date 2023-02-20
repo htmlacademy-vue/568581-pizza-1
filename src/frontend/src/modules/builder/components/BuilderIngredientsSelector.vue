@@ -15,7 +15,7 @@
               name="sauce"
               :value="sauce.name"
               v-model="Sauce.name"
-              @input="setSauce"
+              @input="setSauce(Sauce)"
             />
             <span>{{ sauce.name }}</span>
           </label>
@@ -38,7 +38,7 @@
 </template>
 <script>
 import ItemIngredient from "@/modules/builder/components/ItemIngredient.vue";
-import pizza from "@/static/pizza.json";
+
 export default {
   name: "BuilderIngredientsSelector",
   components: {
@@ -46,7 +46,6 @@ export default {
   },
   data() {
     return {
-      pizza,
       Sauce: this.sauce,
       Ingredients: this.ingredients,
       Sauces: this.sauces,
@@ -76,9 +75,6 @@ export default {
         );
       });
     },
-    countPrice() {
-      return this.Ingredients.reduce((sum, item) => sum + item.totalPrice, 0);
-    },
   },
   methods: {
     updateIngredients(ingredient) {
@@ -106,20 +102,19 @@ export default {
     //   //   }
     //   // }
     // },
-    setSauce(event) {
-      console.log(event);
+    setSauce(newValue) {
+      //console.log(event);
+      this.$emit("update:sauce", newValue);
     },
     // countPrice(ingredientPrice){
     //   this.price
     // },
   },
   watch: {
-    Sauce(newValue) {
-      this.$emit("update:sauce", newValue);
-    },
-    countPrice(newValue) {
-      this.$emit("update:price", newValue);
-    },
+    // Sauce(newValue) {
+    //   console.log("AAAAAAAAAAAAAAaaa");
+    //   this.$emit("update:sauce", newValue);
+    // },
   },
   // methods: {
   //   test(target) {

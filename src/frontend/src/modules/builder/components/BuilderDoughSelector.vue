@@ -19,6 +19,7 @@
             type="radio"
             :value="Dough.name"
             name="dough"
+            v-model="dough.name"
             class="visually-hidden"
           />
           <b>{{ Dough.name }}</b>
@@ -33,7 +34,7 @@
 export default {
   name: "BuilderDoughSelector",
   data() {
-    return { Doughs: this.doughs };
+    return { Doughs: this.doughs, Dough: this.dough };
   },
   components: {},
   props: {
@@ -44,19 +45,34 @@ export default {
       type: Object,
     },
   },
-  methods: {
-    setSelected(selectedDough) {
-      this.Doughs.forEach((dough) => {
-        dough.selected = false;
-        if (dough.id === selectedDough.id) dough.selected = true;
+  computed: {
+    pizzaDough: function () {
+      return this.Doughs.map(function (dough) {
+        switch (dough.name) {
+          case "Тонкое":
+            return "dough__input--light";
+          case "Толстое":
+            return "dough__input--large";
+          default:
+            return "";
+        }
       });
-      this.$emit("update:doughs", this.Doughs);
     },
   },
-  // watch: {
-  //   Doughs(newValue) {
-  //     this.$emit("update:doughs", newValue);
-  //   },
-  // },
+  methods: {
+    // pizzaDoughVal: function () {
+    //   if (this.Doughs.name == "Тонкое") {
+    //     return "light";
+    //   } else if (this.Doughs.name == "Толстое") {
+    //     return "large";
+    //   }
+    //   return "";
+    // },
+  },
+  watch: {
+    Dough(newValue) {
+      this.$emit("update:dough", newValue);
+    },
+  },
 };
 </script>

@@ -4,8 +4,8 @@
       <h2 class="title title--small sheet__title">Выберите размер</h2>
       <div class="sheet__content diameter">
         <label
-          v-for="(size, index) in sizes"
-          :key="size.id"
+          v-for="(Size, index) in Sizes"
+          :key="Size.id"
           class="diameter__input"
           :class="pizzaImage[index]"
         >
@@ -13,8 +13,8 @@
             type="radio"
             name="diameter"
             class="visually-hidden"
-            :value="size.name"
-            v-model="Size.name"
+            :value="Size.name"
+            v-model="size.name"
           />
           <span>{{ size.name }}</span>
         </label>
@@ -23,11 +23,11 @@
   </div>
 </template>
 <script>
-
 export default {
   name: "BuilderSizeSelector",
   data() {
     return {
+      Sizes: this.sizes,
       Size: this.size,
     };
   },
@@ -37,11 +37,11 @@ export default {
     },
     sizes: {
       type: Array,
-    }
+    },
   },
   computed: {
     pizzaVal: function () {
-      return this.pizza.sizes.map(function (size) {
+      return this.sizes.map(function (size) {
         if (!size) return "";
         switch (size.multiplier) {
           case 1:
@@ -56,7 +56,7 @@ export default {
       });
     },
     pizzaImage: function () {
-      return this.pizza.sizes.map(function (size) {
+      return this.sizes.map(function (size) {
         if (!size) return "";
         switch (size.multiplier) {
           case 1:
@@ -73,6 +73,7 @@ export default {
   },
   watch: {
     Size(newValue) {
+      console.log("AAAAAAAAAAAAAaaaaaaaaa");
       this.$emit("update:size", newValue);
     },
   },

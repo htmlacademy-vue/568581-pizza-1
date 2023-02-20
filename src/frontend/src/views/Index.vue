@@ -6,16 +6,19 @@
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
           <BuilderDoughSelector
-            @update:doughs="setDough"
+            @update:dough="setDough"
             :dough="dough"
             :doughs="doughs"
           />
-          <BuilderSizeSelectorVue :size="size" :sizes="sizes" @update:size="setSize" />
+          <BuilderSizeSelectorVue
+            :size="size"
+            :sizes="sizes"
+            @update:size="setSize"
+          />
           <BuilderIngredientsSelector
             :ingredients="ingredients"
             :sauces="sauces"
             :sauce="sauce"
-            @update:price="setPrice"
             @setIngredients="setIngredients"
             @update:sauce="setSauce"
           />
@@ -64,8 +67,8 @@ export default {
       doughs: pizza.dough,
       sauce: pizza.sauces[0],
       sauces: pizza.sauces,
-      sizes: pizza.sizes,
       size: pizza.sizes[0],
+      sizes: pizza.sizes,
       ingredientsPrice: 0,
       price: 0,
       name: "",
@@ -73,13 +76,13 @@ export default {
   },
   computed: {},
   methods: {
-    setDough(doughs) {
-      console.log(doughs);
-      this.doughs = doughs;
+    setDough(dough) {
+      console.log(dough);
+      this.dough = dough;
     },
     setSauce(sauce) {
-      console.log(sauce);
       this.sauce = sauce;
+      console.log(sauce);
     },
     setSize(size) {
       console.log(size);
@@ -95,6 +98,9 @@ export default {
     },
     setPrice(price) {
       this.price = price;
+    },
+    countPrice() {
+      return this.ingredients.reduce((sum, item) => sum + item.totalPrice, 0);
     },
     changeIngredient(changeObject) {
       let elem = this.ingredients.find(
