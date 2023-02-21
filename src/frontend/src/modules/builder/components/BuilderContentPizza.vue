@@ -10,9 +10,9 @@
       />
     </label>
     <BuilderPizzaView
-      :size="size"
+      :selectedSize="selectedSize"
       :ingredients="ingredients"
-      :sauce="sauce"
+      :selectedSauce="selectedSauce"
       @updateIngredients="changeIngredient"
     ></BuilderPizzaView>
     <BuilderPriceCounter :price="price"></BuilderPriceCounter>
@@ -29,10 +29,10 @@ export default {
     BuilderPriceCounter,
   },
   props: {
-    sauce: {
+    selectedSauce: {
       type: Object,
     },
-    size: {
+    selectedSize: {
       type: Object,
     },
     price: {

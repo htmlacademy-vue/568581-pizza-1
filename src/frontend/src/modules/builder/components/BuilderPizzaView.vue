@@ -30,10 +30,10 @@ export default {
     return {};
   },
   props: {
-    sauce: {
+    selectedSauce: {
       type: Object,
     },
-    size: {
+    selectedSize: {
       type: Object,
     },
     ingredients: {
@@ -45,7 +45,7 @@ export default {
       return this.ingredients.filter((ingredient) => ingredient.count > 0);
     },
     pizzaSauce() {
-      switch (this.sauce.name) {
+      switch (this.selectedSauce.name) {
         case "Сливочный":
           return "creamy";
         case "Томатный":
@@ -55,7 +55,7 @@ export default {
       }
     },
     pizzaSize() {
-      switch (this.size.name) {
+      switch (this.selectedSize.name) {
         case "23 см":
           return "small";
         case "32 см":

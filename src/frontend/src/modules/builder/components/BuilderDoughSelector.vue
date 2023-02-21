@@ -10,20 +10,20 @@
           @setSelected="setSelected"
         /> -->
         <label
-          v-for="(Dough, index) in this.Doughs"
-          :key="Dough.id"
+          v-for="(dough, index) in this.doughs"
+          :key="dough.id"
           class="dough__input"
           :class="pizzaDough[index]"
         >
           <input
             type="radio"
-            :value="Dough.name"
+            :value="dough.name"
             name="dough"
-            v-model="dough.name"
+            :checked="dough === selectedDough"
             class="visually-hidden"
           />
-          <b>{{ Dough.name }}</b>
-          <span>{{ Dough.description }}</span>
+          <b>{{ dough.name }}</b>
+          <span>{{ dough.description }}</span>
         </label>
       </div>
     </div>
@@ -34,20 +34,20 @@
 export default {
   name: "BuilderDoughSelector",
   data() {
-    return { Doughs: this.doughs, Dough: this.dough };
+    return {};
   },
   components: {},
   props: {
     doughs: {
       type: Array,
     },
-    dough: {
+    selectedDough: {
       type: Object,
     },
   },
   computed: {
     pizzaDough: function () {
-      return this.Doughs.map(function (dough) {
+      return this.doughs.map(function (dough) {
         switch (dough.name) {
           case "Тонкое":
             return "dough__input--light";

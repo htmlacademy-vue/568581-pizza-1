@@ -4,8 +4,8 @@
       <h2 class="title title--small sheet__title">Выберите размер</h2>
       <div class="sheet__content diameter">
         <label
-          v-for="(Size, index) in Sizes"
-          :key="Size.id"
+          v-for="(size, index) in sizes"
+          :key="size.id"
           class="diameter__input"
           :class="pizzaImage[index]"
         >
@@ -13,8 +13,9 @@
             type="radio"
             name="diameter"
             class="visually-hidden"
-            :value="Size.name"
-            v-model="size.name"
+            :value="size.name"
+            :checked="size === selectedSize"
+            @input="selectSize(size)"
           />
           <span>{{ size.name }}</span>
         </label>
@@ -26,17 +27,19 @@
 export default {
   name: "BuilderSizeSelector",
   data() {
-    return {
-      Sizes: this.sizes,
-      Size: this.size,
-    };
+    return {};
   },
   props: {
-    size: {
+    selectedSize: {
       type: Object,
     },
     sizes: {
       type: Array,
+    },
+  },
+  methods: {
+    selectSize(newValue) {
+      this.$emit("update:selectedSize", newValue);
     },
   },
   computed: {
@@ -71,11 +74,6 @@ export default {
       });
     },
   },
-  watch: {
-    Size(newValue) {
-      console.log("AAAAAAAAAAAAAaaaaaaaaa");
-      this.$emit("update:size", newValue);
-    },
-  },
+  watch: {},
 };
 </script>

@@ -6,27 +6,24 @@
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
           <BuilderDoughSelector
-            @update:dough="setDough"
-            :dough="dough"
+            :selectedDough="selectedDough"
             :doughs="doughs"
           />
           <BuilderSizeSelectorVue
-            :size="size"
+            :selectedSize.sync="selectedSize"
             :sizes="sizes"
-            @update:size="setSize"
           />
           <BuilderIngredientsSelector
             :ingredients="ingredients"
+            :selectedSauce.sync="selectedSauce"
             :sauces="sauces"
-            :sauce="sauce"
             @setIngredients="setIngredients"
-            @update:sauce="setSauce"
           />
           <BuilderContentPizza
             :name="name"
             :price="price"
-            :sauce="sauce"
-            :size="size"
+            :selectedSauce="selectedSauce"
+            :selectedSize="selectedSize"
             :ingredients="ingredients"
             @setIngredients="setIngredients"
             @update:name="setName"
@@ -63,31 +60,38 @@ export default {
       ingredients: pizza.ingredients.map((ingredient) =>
         getIngredient(ingredient)
       ),
-      dough: pizza.dough[0],
+      selectedDough: pizza.dough[0],
       doughs: pizza.dough,
-      sauce: pizza.sauces[0],
+      selectedSauce: pizza.sauces[0],
       sauces: pizza.sauces,
+      selectedSize: pizza.sizes[0],
       size: pizza.sizes[0],
       sizes: pizza.sizes,
-      ingredientsPrice: 0,
-      price: 0,
       name: "",
     };
   },
-  computed: {},
+  computed: {
+    price() {
+      return this.ingredients.reduce((sum, item) => sum +
+        item.totalPrice, 0) +
+        this.selectedDough.price +
+        this.selectedSauce.price
+    ;
+    },
+  },
   methods: {
-    setDough(dough) {
-      console.log(dough);
-      this.dough = dough;
-    },
-    setSauce(sauce) {
-      this.sauce = sauce;
-      console.log(sauce);
-    },
-    setSize(size) {
-      console.log(size);
-      this.size = size;
-    },
+    // setDough(dough) {
+    //   console.log(dough);
+    //   this.dough = dough;
+    // },
+    // setSauce(sauce) {
+    //   this.sauce = sauce;
+    //   console.log(sauce);
+    // },
+    // setSize(size) {
+    //   console.log(size);
+    //   this.size = size;
+    // },
     setName(name) {
       console.log(name);
       this.name = name;
@@ -99,9 +103,9 @@ export default {
     setPrice(price) {
       this.price = price;
     },
-    countPrice() {
-      return this.ingredients.reduce((sum, item) => sum + item.totalPrice, 0);
-    },
+    // countPrice() {
+    //   return this.ingredients.reduce((sum, item) => sum + item.totalPrice, 0);
+    // },
     changeIngredient(changeObject) {
       let elem = this.ingredients.find(
         (ingredient) => ingredient.id === changeObject.id

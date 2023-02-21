@@ -6,7 +6,7 @@
         <div class="ingredients__sauce">
           <p>Основной соус:</p>
           <label
-            v-for="sauce in Sauces"
+            v-for="sauce in sauces"
             :key="sauce.id"
             class="radio ingredients__input"
           >
@@ -14,8 +14,8 @@
               type="radio"
               name="sauce"
               :value="sauce.name"
-              v-model="Sauce.name"
-              @input="setSauce(Sauce)"
+              :checked="sauce === selectedSauce"
+              @input="changeSauce(sauce)"
             />
             <span>{{ sauce.name }}</span>
           </label>
@@ -46,9 +46,7 @@ export default {
   },
   data() {
     return {
-      Sauce: this.sauce,
       Ingredients: this.ingredients,
-      Sauces: this.sauces,
     };
   },
   props: {
@@ -59,7 +57,7 @@ export default {
       type: Number,
       default: 0,
     },
-    sauce: {
+    selectedSauce: {
       type: Object,
     },
     ingredients: {
@@ -102,13 +100,12 @@ export default {
     //   //   }
     //   // }
     // },
-    setSauce(newValue) {
-      //console.log(event);
-      this.$emit("update:sauce", newValue);
-    },
     // countPrice(ingredientPrice){
     //   this.price
     // },
+    changeSauce(newValue) {
+      this.$emit("update:selectedSauce", newValue);
+    },
   },
   watch: {
     // Sauce(newValue) {
