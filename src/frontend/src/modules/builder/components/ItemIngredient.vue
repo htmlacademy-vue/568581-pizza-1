@@ -32,11 +32,6 @@ export default {
   data() {
     return {
       Ingredient: this.ingredient,
-      // count: this.ingredient.count,
-      // id: this.ingredient.id,
-      // name: this.ingredient.name,
-      // price: this.ingredient.price,
-      // countPrice: this.ingredient.countPrice,
     };
   },
   props: {
@@ -44,17 +39,6 @@ export default {
       type: Object,
       required: true,
     },
-    // price: {
-    //   type: Number,
-    //   default: 1,
-    // },
-    // ingredients: {
-    //   type: Array,
-    // },
-    //   count: {
-    //     type: Number,
-    //     default: 0,
-    //   },
   },
   computed: {
     ingredientVal: function () {
@@ -69,13 +53,6 @@ export default {
       this.Ingredient.count = newValue;
       this.Ingredient.totalPrice =
         this.Ingredient.count * this.Ingredient.price;
-      // let obj = {
-      //   id: this.ingredient.id,
-      //   count: this.count,
-      //   countPrice: this.countPrice,
-      //   ingredient: this.ingredient,
-      // };
-      //  obj.count > 0
       this.$emit("updateIngredients", this.Ingredient);
     },
   },

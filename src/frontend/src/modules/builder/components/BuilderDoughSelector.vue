@@ -3,12 +3,6 @@
     <div class="sheet">
       <h2 class="title title--small sheet__title">Выберите тесто</h2>
       <div class="sheet__content dough">
-        <!-- <Dough
-          v-for="dough in this.Doughs"
-          :key="dough.id"
-          :dough="dough"
-          @setSelected="setSelected"
-        /> -->
         <label
           v-for="(dough, index) in this.doughs"
           :key="dough.id"
@@ -21,6 +15,7 @@
             name="dough"
             :checked="dough === selectedDough"
             class="visually-hidden"
+            @input="selectDough(dough)"
           />
           <b>{{ dough.name }}</b>
           <span>{{ dough.description }}</span>
@@ -60,19 +55,14 @@ export default {
     },
   },
   methods: {
-    // pizzaDoughVal: function () {
-    //   if (this.Doughs.name == "Тонкое") {
-    //     return "light";
-    //   } else if (this.Doughs.name == "Толстое") {
-    //     return "large";
-    //   }
-    //   return "";
-    // },
+    selectDough(newValue) {
+      this.$emit("update:selectedDough", newValue);
+    },
   },
   watch: {
-    Dough(newValue) {
-      this.$emit("update:dough", newValue);
-    },
+    // Dough(newValue) {
+    //   this.$emit("update:dough", newValue);
+    // },
   },
 };
 </script>

@@ -72,33 +72,21 @@ export default {
   },
   computed: {
     price() {
-      return this.ingredients.reduce((sum, item) => sum +
-        item.totalPrice, 0) +
+      return (
+        this.ingredients.reduce((sum, item) => sum + item.totalPrice, 0) +
         this.selectedDough.price +
         this.selectedSauce.price
-    ;
+      );
     },
   },
   methods: {
-    // setDough(dough) {
-    //   console.log(dough);
-    //   this.dough = dough;
-    // },
-    // setSauce(sauce) {
-    //   this.sauce = sauce;
-    //   console.log(sauce);
-    // },
-    // setSize(size) {
-    //   console.log(size);
-    //   this.size = size;
-    // },
     setName(name) {
-      console.log(name);
+      //console.log(name);
       this.name = name;
     },
     setIngredients(ingredient) {
       this.changeIngredient(ingredient);
-      console.log(this.ingredients);
+      //console.log(this.ingredients);
     },
     setPrice(price) {
       this.price = price;

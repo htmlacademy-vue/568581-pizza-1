@@ -77,25 +77,7 @@ export default {
       ingredient.totalPrice = ingredient.count * ingredient.price;
       console.log(ingredient);
       this.$emit("updateIngredients", ingredient);
-      // console.log(data);
-      // let top = {
-      //   id: data.id,
-      //   name: data.name,
-      //   image: data.image,
-      //   price: data.price,
-      // };
-      // if (!this.findTopping(top.id)) {
-      //   this.toppings.push(top);
-      // }
-      // console.log(this.findTopping(top.id));
     },
-    // findTopping(id) {
-    //   let ret = false;
-    //   this.toppings.forEach(function (elem) {
-    //     if (id == elem.id) ret = true;
-    //   });
-    //   return ret;
-    // },
   },
 };
 </script>

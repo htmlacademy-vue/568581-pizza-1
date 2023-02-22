@@ -3,7 +3,7 @@
     <div class="sheet">
       <h2 class="title title--small sheet__title">Выберите размер</h2>
       <div class="sheet__content diameter">
-        <label
+        <!-- <label
           v-for="(size, index) in sizes"
           :key="size.id"
           class="diameter__input"
@@ -18,14 +18,27 @@
             @input="selectSize(size)"
           />
           <span>{{ size.name }}</span>
-        </label>
+        </label> -->
+        <SelectorItem
+          v-for="(size, index) in sizes"
+          :key="size.id"
+          :item="size"
+          name="diameter"
+          :image="pizzaImage[index]"
+          :selectedItem="selectedSize"
+          @update:selectedItem="selectSize"
+        />
       </div>
     </div>
   </div>
 </template>
 <script>
+import SelectorItem from "@/common/components/SelectorItem.vue";
 export default {
   name: "BuilderSizeSelector",
+  components: {
+    SelectorItem,
+  },
   data() {
     return {};
   },

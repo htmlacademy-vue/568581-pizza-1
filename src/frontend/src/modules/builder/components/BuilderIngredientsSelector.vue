@@ -78,45 +78,10 @@ export default {
     updateIngredients(ingredient) {
       this.$emit("setIngredients", ingredient);
     },
-    // removeIngredients(ingredient) {
-    //   this.Ingredients = this.Ingredients.filter((item) => {
-    //     return item.id !== ingredient.id;
-    //   });
-    //   this.$emit("setIngredients", this.Ingredients);
-    // },
-    // changeIngredient(changeObject) {
-    //   let elem = this.Ingredients.find(
-    //     (ingredient) => ingredient.id === changeObject.id
-    //   );
-    //   elem.count = changeObject.count;
-    //   elem.totalPrice = changeObject.totalPrice;
-    //   // if (!this.Ingredients.some((item) => item.id === addObject.id)) {
-    //   //   this.Ingredients.push(addObject);
-    //   // } else {
-    //   //   let obj = this.Ingredients.find((item) => item.id === addObject.id);
-    //   //   if (obj) {
-    //   //     obj.count = addObject.count;
-    //   //     obj.countPrice = addObject.countPrice;
-    //   //   }
-    //   // }
-    // },
-    // countPrice(ingredientPrice){
-    //   this.price
-    // },
     changeSauce(newValue) {
       this.$emit("update:selectedSauce", newValue);
     },
   },
-  watch: {
-    // Sauce(newValue) {
-    //   console.log("AAAAAAAAAAAAAAaaa");
-    //   this.$emit("update:sauce", newValue);
-    // },
-  },
-  // methods: {
-  //   test(target) {
-  //     console.log(target);
-  //   },
-  // },
+  watch: {},
 };
 </script>
