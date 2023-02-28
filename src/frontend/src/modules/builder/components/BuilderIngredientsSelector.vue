@@ -24,7 +24,7 @@
           <p>Начинка:</p>
           <ul class="ingredients__list">
             <ItemIngredient
-              v-for="ingredient in Ingredients"
+              v-for="ingredient in ingredients"
               :key="ingredient.id"
               :ingredient="ingredient"
               @updateIngredients="updateIngredients"
@@ -46,7 +46,7 @@ export default {
   },
   data() {
     return {
-      Ingredients: this.ingredients,
+    //  Ingredients: this.ingredients,
     };
   },
   props: {

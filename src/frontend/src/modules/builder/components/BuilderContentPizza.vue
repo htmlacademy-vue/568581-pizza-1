@@ -1,12 +1,13 @@
 <template>
   <div class="content__pizza">
     <label class="input">
-      <span class="visually-hidden">Название пиццы</span>
+      <span class="visually-hidden">Название пиццы хуицы</span>
       <input
         type="text"
         name="pizza_name"
         placeholder="Введите название пиццы"
         v-model="Name"
+        @change="changeName"
       />
     </label>
     <BuilderPizzaView
@@ -58,11 +59,12 @@ export default {
       elem.count = changeObject.count;
       elem.totalPrice = changeObject.totalPrice;
     },
+    changeName() {
+      console.log(this.Name);
+      this.$emit("update:name", this.Name);
+    },
   },
   watch: {
-    Name(newValue) {
-      this.$emit("update:name", newValue);
-    },
   },
 };
 </script>

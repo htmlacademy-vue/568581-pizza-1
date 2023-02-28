@@ -1,4 +1,5 @@
 module.exports = {
+  transpileDependencies: [],
   css: {
     loaderOptions: {
       sass: {
@@ -8,6 +9,7 @@ module.exports = {
   },
 
   devServer: {
+    port: 80,
     proxy: {
       "^/api": {
         target: "http://backend:3000/",
@@ -27,9 +29,9 @@ module.exports = {
       },
     },
 
-    overlay: {
-      warnings: true,
-      errors: true,
-    },
+    // overlay: {
+    //   warnings: true,
+    //   errors: true,
+    // },
   },
 };

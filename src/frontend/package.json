@@ -32,7 +32,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.16.7",
     "@vue/cli-plugin-babel": "~4.5.15",
-    "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-plugin-router": "~4.5.15",
     "@vue/cli-plugin-unit-jest": "^5.0.8",
     "@vue/cli-plugin-vuex": "~4.5.15",
@@ -43,7 +42,6 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^27.4.6",
     "babel-plugin-require-context-hook": "^1.0.0",
-    "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
     "prettier": "^2.5.1",

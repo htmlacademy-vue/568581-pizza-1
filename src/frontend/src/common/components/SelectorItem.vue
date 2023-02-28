@@ -1,8 +1,8 @@
 <template>
-  <label :class="this.name + '__input ' + this.image">
+  <label :class="name + '__input ' + image">
     <input
       type="radio"
-      :name="this.name"
+      :name="name"
       class="visually-hidden"
       :value="item.name"
       :checked="item === selectedItem"

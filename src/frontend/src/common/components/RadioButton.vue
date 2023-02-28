@@ -8,7 +8,7 @@
     >
       <span class="visually-hidden">Меньше</span>
     </button>
-    <input v-model="count" type="text" name="counter" class="counter__input" />
+    <input :value="count" type="text" name="counter" class="counter__input" />
     <button
       type="button"
       class="counter__button counter__button--plus"
