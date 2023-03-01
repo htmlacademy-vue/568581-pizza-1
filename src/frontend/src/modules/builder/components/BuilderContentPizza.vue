@@ -11,7 +11,7 @@
       />
     </label>
     <BuilderPizzaView
-      :selectedSize="selectedSize"
+      :selectedDough="selectedDough"
       :ingredients="ingredients"
       :selectedSauce="selectedSauce"
       @updateIngredients="changeIngredient"
@@ -33,7 +33,7 @@ export default {
     selectedSauce: {
       type: Object,
     },
-    selectedSize: {
+    selectedDough: {
       type: Object,
     },
     price: {

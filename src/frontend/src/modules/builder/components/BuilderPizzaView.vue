@@ -33,7 +33,10 @@ export default {
     selectedSauce: {
       type: Object,
     },
-    selectedSize: {
+    // selectedSize: {
+    //   type: Object,
+    // },
+    selectedDough: {
       type: Object,
     },
     ingredients: {
@@ -54,20 +57,30 @@ export default {
           return "tomato";
       }
     },
-    pizzaSize() {
-      switch (this.selectedSize.name) {
-        case "23 см":
+    // pizzaSize() {
+    //   switch (this.selectedSize.name) {
+    //     case "23 см":
+    //       return "small";
+    //     case "32 см":
+    //       return "big";
+    //     case "45 см":
+    //       return "big";
+    //     default:
+    //       return "big";
+    //   }
+    // },
+    pizzaDough() {
+      switch (this.selectedDough.name) {
+        case "Тонкое":
           return "small";
-        case "32 см":
-          return "big";
-        case "45 см":
+        case "Толстое":
           return "big";
         default:
           return "big";
       }
     },
     pizzaClass() {
-      return "pizza--foundation--" + this.pizzaSize + "-" + this.pizzaSauce;
+      return "pizza--foundation--" + this.pizzaDough + "-" + this.pizzaSauce;
     },
   },
   methods: {

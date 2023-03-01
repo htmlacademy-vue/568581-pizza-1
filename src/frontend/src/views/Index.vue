@@ -6,7 +6,7 @@
         <div class="content__wrapper">
           <h1 class="title title--big">Конструктор пиццы</h1>
           <BuilderDoughSelector
-            :selectedDough="selectedDough"
+            :selectedDough.sync="selectedDough"
             :doughs="doughs"
           />
           <BuilderSizeSelectorVue
@@ -23,7 +23,7 @@
             :name="name"
             :price="price"
             :selectedSauce="selectedSauce"
-            :selectedSize="selectedSize"
+            :selectedDough="selectedDough"
             :ingredients="ingredients"
             @setIngredients="setIngredients"
             @update:name="setName"
@@ -102,7 +102,15 @@ export default {
       elem.totalPrice = changeObject.totalPrice;
     },
   },
-  watch: {},
+  watch: {
+    ingredients: {
+      handler(val, oldVal){
+        console.log(val);
+        console.log(oldVal);
+      },
+      deep: true,
+    },
+  },
 };
 </script>
 <style scoped></style>
