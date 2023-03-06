@@ -6,5 +6,5 @@ export const getIngredient = (ingredient) => {
   // objIngredient.price = ingredient.price;
   // objIngredient.totalPrice = 0;
   // objIngredient.count = 0;
-  return {...ingredient,totalPrice: 0,count: 0 };
+  return { ...ingredient, totalPrice: 0, count: 0 };
 };

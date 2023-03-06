@@ -64,7 +64,6 @@ export default {
       this.$emit("update:name", this.Name);
     },
   },
-  watch: {
-  },
+  watch: {},
 };
 </script>

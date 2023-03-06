@@ -1,7 +1,7 @@
 <template>
   <AppDrop @drop="addTopping">
     <div class="content__constructor">
-      <div class="pizza" :class="this.pizzaClass">
+      <div class="pizza" :class="pizzaClass">
         <div class="pizza__wrapper">
           <Topping
             v-for="topping in toppings"

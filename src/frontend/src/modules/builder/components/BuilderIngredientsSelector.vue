@@ -46,7 +46,7 @@ export default {
   },
   data() {
     return {
-    //  Ingredients: this.ingredients,
+      //  Ingredients: this.ingredients,
     };
   },
   props: {
