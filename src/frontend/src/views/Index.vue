@@ -73,10 +73,14 @@ export default {
   computed: {
     price() {
       return (
-        this.ingredients.reduce((sum, item) => sum + item.totalPrice, 0) +
-        this.selectedDough.price +
-        this.selectedSauce.price
+        this.selectedSize.multiplier *
+        (this.ingredientPrice +
+          this.selectedDough.price +
+          this.selectedSauce.price)
       );
+    },
+    ingredientPrice() {
+      return this.ingredients.reduce((sum, item) => sum + item.totalPrice, 0);
     },
   },
   methods: {
@@ -103,13 +107,13 @@ export default {
     },
   },
   watch: {
-    ingredients: {
-      handler(val, oldVal){
-        console.log(val);
-        console.log(oldVal);
-      },
-      deep: true,
-    },
+    // ingredients: {
+    //   handler(val, oldVal){
+    //     console.log(val);
+    //     console.log(oldVal);
+    //   },
+    //   deep: true,
+    // },
   },
 };
 </script>

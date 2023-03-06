@@ -4,15 +4,21 @@
       type="button"
       :disabled="count === 0"
       class="counter__button counter__button--minus"
-      @click="decrement"
+      @click="changeCount(count - 1)"
     >
       <span class="visually-hidden">Меньше</span>
     </button>
-    <input :value="count" type="text" name="counter" class="counter__input" />
+    <input
+      @change="changeCount($event.target.value)"
+      :value="count"
+      type="text"
+      name="counter"
+      class="counter__input"
+    />
     <button
       type="button"
       class="counter__button counter__button--plus"
-      @click="increment"
+      @click="changeCount(count + 1)"
     >
       <span class="visually-hidden">Больше</span>
     </button>
@@ -32,24 +38,21 @@ export default {
       default: 0,
     },
   },
-  // computed: {
-  //   isDecrementDisabled() {
-  //     return this.number === 0;
-  //   },
-  // },
 
   methods: {
-    increment() {
-      this.$emit("update:count", this.count + 1);
-    },
-    decrement() {
-      this.$emit("update:count", this.count - 1);
+    // increment() {
+    //   this.$emit("update:count", this.count + 1);
+    // },
+    changeCount(newValue) {
+      let value = Number(newValue);
+      value = Math.max(0, newValue);
+      this.$emit("update:count", value);
     },
   },
-  // watch: {
-  //   count(newValue) {
-  //     this.$emit("update:name", Number(newValue));
-  //   },
-  // },
+  watch: {
+    // count(newValue) {
+    //   this.$emit("update:count", Number(newValue));
+    // },
+  },
 };
 </script>
