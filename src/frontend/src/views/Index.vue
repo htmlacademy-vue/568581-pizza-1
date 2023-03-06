@@ -95,9 +95,6 @@ export default {
     setPrice(price) {
       this.price = price;
     },
-    // countPrice() {
-    //   return this.ingredients.reduce((sum, item) => sum + item.totalPrice, 0);
-    // },
     changeIngredient(changeObject) {
       let elem = this.ingredients.find(
         (ingredient) => ingredient.id === changeObject.id

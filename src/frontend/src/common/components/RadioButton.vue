@@ -46,6 +46,7 @@ export default {
     changeCount(newValue) {
       let value = Number(newValue);
       value = Math.max(0, newValue);
+      value = Math.min(3, newValue);
       this.$emit("update:count", value);
     },
   },
