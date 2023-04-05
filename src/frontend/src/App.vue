@@ -1,8 +1,6 @@
 <template>
   <div id="App">
-    <router-link to='/'>Home</router-link>
-    <router-link to='/Profile/'>Profile</router-link>
-    <router-view  />
+    <router-view :misc="misc" :pizza="pizza" :user="user" />
   </div>
   <!-- <div id="app">
     <div class="main">
@@ -28,8 +26,30 @@
 
 <script>
 //import Index from "@/views/Index.vue";
+import misc from "@/static/misc.json";
+import pizza from "@/static/pizza.json";
+import user from "@/static/user.json";
 export default {
   name: "App",
+  data() {
+    return {
+      misc,
+      pizza,
+      user,
+    }
+  },
+  computed: {
+    routeProps() {
+      const routes = {
+        IndexHome: { misc, pizza, user },
+        Order: { misc, pizza, user },
+        Cart: { misc, pizza, user },
+        Profile: { misc, pizza, user },
+        Login: { user }
+      };
+      return routes[this.$route.name] || {};
+    },
+  },
   // components: {
   //   Index,
   // },

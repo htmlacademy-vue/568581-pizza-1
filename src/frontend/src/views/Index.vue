@@ -54,9 +54,6 @@ export default {
   },
   data() {
     return {
-      misc,
-      pizza,
-      user,
       ingredients: pizza.ingredients.map((ingredient) =>
         getIngredient(ingredient)
       ),
@@ -69,6 +66,20 @@ export default {
       sizes: pizza.sizes,
       name: "",
     };
+  },
+  props: {
+    misc: {
+      type: Array,
+      required: true,
+    },
+    pizza: {
+      type: Array,
+      required: true,
+    },
+    user: {
+      type: Array,
+      required: true,
+    },
   },
   computed: {
     price() {
