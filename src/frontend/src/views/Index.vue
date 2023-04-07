@@ -1,6 +1,5 @@
 <template>
   <body>
-    <Header />
     <main class="content">
       <form action="#" method="post">
         <div class="content__wrapper">
@@ -73,11 +72,11 @@ export default {
       required: true,
     },
     pizza: {
-      type: Array,
+      type: Object,
       required: true,
     },
     user: {
-      type: Array,
+      type: Object,
       required: true,
     },
   },
