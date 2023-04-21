@@ -1,15 +1,14 @@
 <template>
   <div class="app-layout-main">
-    <AppLayoutHeader />
-    <slot />
+    <h1>!!!</h1>
   </div>
 </template>
 
 <script>
-import AppLayoutHeader from './AppLayoutHeader.vue' 
+import AppLayoutHeader from '@/layouts/AppLayoutHeader.vue' 
 
 export default  {
-  name: "AppLayoutMain",
+  name: 'AppLayoutMain',
   components: {
     AppLayoutHeader
   },

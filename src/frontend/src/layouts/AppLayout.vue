@@ -1,12 +1,5 @@
 <template>
-  <component 
-  :is="layout"
-  :mick="mick"
-  :pizza="pizza"
-  :user="user"
-  >
-    <slot />
-  </component>
+  <component :is="layout"></component>
 </template>
 <script>
 const defaultLayout = "AppLayoutDefault"
