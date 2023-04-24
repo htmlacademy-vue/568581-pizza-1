@@ -1,6 +1,5 @@
 <template>
   <body>
-    <Header />
     <main class="content">
       <form action="#" method="post">
         <div class="content__wrapper">
@@ -54,9 +53,6 @@ export default {
   },
   data() {
     return {
-      misc,
-      pizza,
-      user,
       ingredients: pizza.ingredients.map((ingredient) =>
         getIngredient(ingredient)
       ),
@@ -69,6 +65,20 @@ export default {
       sizes: pizza.sizes,
       name: "",
     };
+  },
+  props: {
+    misc: {
+      type: Array,
+      required: true,
+    },
+    pizza: {
+      type: Object,
+      required: true,
+    },
+    user: {
+      type: Object,
+      required: true,
+    },
   },
   computed: {
     price() {
